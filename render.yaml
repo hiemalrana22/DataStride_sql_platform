@@ -1,0 +1,12 @@
+# Render Blueprint — backend API
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: oranjestride-sql-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "20.19.0"

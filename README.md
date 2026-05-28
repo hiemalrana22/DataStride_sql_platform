@@ -37,9 +37,17 @@ Open the URL shown in the terminal (usually `http://localhost:5173`).
 
 No environment variables required for the current mock API.
 
-## Backend (Render)
+## Deploy on Render (backend)
 
-When the backend is ready on Render, set the API base URL in `src/services/api.js` and add a Vercel environment variable if needed (e.g. `VITE_API_URL`).
+1. **New Web Service** → connect this repo
+2. **Root Directory:** `backend`
+3. **Build Command:** `npm install`
+4. **Start Command:** `npm start`
+5. **Environment:** `NODE_VERSION` = `20.19.0` (Render defaults to Node 24, which breaks native SQLite builds)
+
+Or deploy via `render.yaml` at the repo root.
+
+Set `VITE_API_URL` on Vercel to your Render URL when connecting the frontend.
 
 ## Project structure
 
