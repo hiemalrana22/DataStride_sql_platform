@@ -7,7 +7,7 @@
 //   POST /api/practice/run     — run any SELECT query against all datasets
 // ─────────────────────────────────────────────
 
-const { getPracticeDb, TABLE_CATALOG, getTablePreview } = require("../utils/practiceDatabase");
+const { getPracticeDb, getTableCatalog, getTablePreview } = require("../utils/practiceDatabase");
 const { validateQuery } = require("../utils/validateQuery");
 
 // ─────────────────────────────────────────────
@@ -16,7 +16,7 @@ const { validateQuery } = require("../utils/validateQuery");
 // can render the "Available Tables" panel.
 // ─────────────────────────────────────────────
 function getTables(req, res) {
-  return res.status(200).json({ tables: TABLE_CATALOG });
+  return res.status(200).json({ tables: getTableCatalog() });
 }
 
 // ─────────────────────────────────────────────

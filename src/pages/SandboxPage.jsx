@@ -199,10 +199,11 @@ function SandboxPage({ activePage, onPageChange }) {
             {/* Sample / expected output for chosen dataset */}
             <section className="sandbox-panel">
               <h3 className="sandbox-panel__title">
-                Sample data — {selectedTable || 'select a table'}
+                Expected output — {selectedTable || 'select a dataset'}
               </h3>
               <p className="sandbox-panel__subtitle">
-                Reference output from this dataset (first 10 rows).
+                Sample rows from your uploaded dataset
+                {preview?.fileName ? ` (${preview.fileName})` : ''}.
               </p>
               {previewError && (
                 <div className="alert alert--error" role="alert">{previewError}</div>

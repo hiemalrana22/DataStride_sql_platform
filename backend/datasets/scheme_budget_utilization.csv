@@ -1,0 +1,201 @@
+scheme_id,scheme_name,ministry,state_code,year,allocated_budget_cr,utilized_budget_cr,beneficiaries_lakh,scheme_type
+SCH01,PM Awas Yojana,Housing,MH,2020,2035.2,1828.7,7.2,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MH,2020,1180.6,1096.1,17.4,CSS
+SCH03,National Health Mission,Health,MH,2020,4021.3,3660.5,10.7,CSS
+SCH04,State Skill Program,Skill Development,MH,2020,5289.3,4852.9,13.0,State
+SCH05,Old Age Pension,Social Justice,MH,2020,933.3,834.7,10.7,State
+SCH01,PM Awas Yojana,Housing,MH,2021,2873.9,2659.6,14.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MH,2021,3961.1,3760.8,20.7,CSS
+SCH03,National Health Mission,Health,MH,2021,4534.2,4417.3,2.4,CSS
+SCH04,State Skill Program,Skill Development,MH,2021,1818.0,1547.1,16.9,State
+SCH05,Old Age Pension,Social Justice,MH,2021,5469.8,4822.4,23.3,State
+SCH01,PM Awas Yojana,Housing,MH,2022,1113.4,1081.6,10.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MH,2022,1327.4,1212.1,7.9,CSS
+SCH03,National Health Mission,Health,MH,2022,2281.3,2030.3,20.5,CSS
+SCH04,State Skill Program,Skill Development,MH,2022,3603.6,3208.9,16.0,State
+SCH05,Old Age Pension,Social Justice,MH,2022,4524.0,4005.7,11.5,State
+SCH01,PM Awas Yojana,Housing,MH,2023,1433.8,1252.5,17.7,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MH,2023,1743.5,1601.0,18.3,CSS
+SCH03,National Health Mission,Health,MH,2023,1355.8,1252.4,7.9,CSS
+SCH04,State Skill Program,Skill Development,MH,2023,5807.2,5301.2,20.5,State
+SCH05,Old Age Pension,Social Justice,MH,2023,3661.2,3132.7,16.6,State
+SCH01,PM Awas Yojana,Housing,UP,2020,5747.3,5334.7,20.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,UP,2020,5397.9,4748.2,6.9,CSS
+SCH03,National Health Mission,Health,UP,2020,3977.1,3593.0,21.3,CSS
+SCH04,State Skill Program,Skill Development,UP,2020,5480.1,4909.9,7.4,State
+SCH05,Old Age Pension,Social Justice,UP,2020,4858.7,4303.5,20.9,State
+SCH01,PM Awas Yojana,Housing,UP,2021,3003.4,2813.6,4.2,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,UP,2021,4044.1,3675.0,15.5,CSS
+SCH03,National Health Mission,Health,UP,2021,1673.7,1583.0,21.8,CSS
+SCH04,State Skill Program,Skill Development,UP,2021,1927.0,1662.0,2.5,State
+SCH05,Old Age Pension,Social Justice,UP,2021,4138.3,3844.1,14.6,State
+SCH01,PM Awas Yojana,Housing,UP,2022,2006.1,1807.2,15.7,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,UP,2022,3383.2,3310.2,5.1,CSS
+SCH03,National Health Mission,Health,UP,2022,4414.8,3984.6,11.8,CSS
+SCH04,State Skill Program,Skill Development,UP,2022,4531.5,4259.7,24.8,State
+SCH05,Old Age Pension,Social Justice,UP,2022,1467.7,1267.4,18.7,State
+SCH01,PM Awas Yojana,Housing,UP,2023,3807.6,3372.2,3.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,UP,2023,1245.4,1203.4,6.4,CSS
+SCH03,National Health Mission,Health,UP,2023,2481.5,2182.4,10.2,CSS
+SCH04,State Skill Program,Skill Development,UP,2023,1161.0,1065.2,3.6,State
+SCH05,Old Age Pension,Social Justice,UP,2023,4961.9,4368.3,14.4,State
+SCH01,PM Awas Yojana,Housing,TN,2020,5376.4,5024.9,14.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,TN,2020,2486.5,2221.2,17.4,CSS
+SCH03,National Health Mission,Health,TN,2020,5969.5,5587.7,14.8,CSS
+SCH04,State Skill Program,Skill Development,TN,2020,4599.4,4187.6,3.4,State
+SCH05,Old Age Pension,Social Justice,TN,2020,3723.9,3629.0,6.0,State
+SCH01,PM Awas Yojana,Housing,TN,2021,4388.0,3844.4,14.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,TN,2021,1302.7,1183.6,19.4,CSS
+SCH03,National Health Mission,Health,TN,2021,2607.4,2441.6,20.3,CSS
+SCH04,State Skill Program,Skill Development,TN,2021,5621.3,4949.6,11.2,State
+SCH05,Old Age Pension,Social Justice,TN,2021,1592.6,1559.2,23.3,State
+SCH01,PM Awas Yojana,Housing,TN,2022,3607.8,3461.5,14.0,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,TN,2022,4042.6,3483.1,19.4,CSS
+SCH03,National Health Mission,Health,TN,2022,1464.1,1401.7,20.0,CSS
+SCH04,State Skill Program,Skill Development,TN,2022,4485.5,3833.7,9.0,State
+SCH05,Old Age Pension,Social Justice,TN,2022,2168.2,1944.5,4.0,State
+SCH01,PM Awas Yojana,Housing,TN,2023,5672.2,5229.7,9.0,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,TN,2023,2864.3,2601.2,15.8,CSS
+SCH03,National Health Mission,Health,TN,2023,3481.5,3375.4,13.4,CSS
+SCH04,State Skill Program,Skill Development,TN,2023,5959.2,5724.9,6.8,State
+SCH05,Old Age Pension,Social Justice,TN,2023,5639.1,4878.5,20.8,State
+SCH01,PM Awas Yojana,Housing,KA,2020,2779.2,2679.6,22.0,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,KA,2020,4990.8,4754.8,9.0,CSS
+SCH03,National Health Mission,Health,KA,2020,1220.8,1101.6,6.0,CSS
+SCH04,State Skill Program,Skill Development,KA,2020,4413.7,3950.3,24.4,State
+SCH05,Old Age Pension,Social Justice,KA,2020,4133.1,3955.0,5.0,State
+SCH01,PM Awas Yojana,Housing,KA,2021,5282.5,5123.8,13.2,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,KA,2021,3952.5,3752.6,6.0,CSS
+SCH03,National Health Mission,Health,KA,2021,3413.3,3078.2,5.4,CSS
+SCH04,State Skill Program,Skill Development,KA,2021,2711.2,2328.5,2.6,State
+SCH05,Old Age Pension,Social Justice,KA,2021,1502.9,1465.6,14.6,State
+SCH01,PM Awas Yojana,Housing,KA,2022,5822.3,5276.3,9.2,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,KA,2022,3431.9,3113.2,4.4,CSS
+SCH03,National Health Mission,Health,KA,2022,4132.3,3628.5,16.3,CSS
+SCH04,State Skill Program,Skill Development,KA,2022,4181.0,3636.5,3.4,State
+SCH05,Old Age Pension,Social Justice,KA,2022,4860.0,4421.5,3.3,State
+SCH01,PM Awas Yojana,Housing,KA,2023,5973.3,5122.2,18.0,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,KA,2023,5915.1,5211.8,5.3,CSS
+SCH03,National Health Mission,Health,KA,2023,1431.2,1272.9,4.3,CSS
+SCH04,State Skill Program,Skill Development,KA,2023,4399.2,3775.0,13.7,State
+SCH05,Old Age Pension,Social Justice,KA,2023,5982.8,5718.5,16.2,State
+SCH01,PM Awas Yojana,Housing,GJ,2020,2392.5,2227.7,14.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,GJ,2020,3015.6,2614.5,22.4,CSS
+SCH03,National Health Mission,Health,GJ,2020,3138.9,2747.5,10.5,CSS
+SCH04,State Skill Program,Skill Development,GJ,2020,2953.5,2828.2,18.9,State
+SCH05,Old Age Pension,Social Justice,GJ,2020,4800.4,4087.2,11.6,State
+SCH01,PM Awas Yojana,Housing,GJ,2021,3303.0,2815.8,8.0,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,GJ,2021,4753.5,4125.2,14.3,CSS
+SCH03,National Health Mission,Health,GJ,2021,1919.0,1634.2,7.5,CSS
+SCH04,State Skill Program,Skill Development,GJ,2021,5874.5,5605.5,24.1,State
+SCH05,Old Age Pension,Social Justice,GJ,2021,3336.8,2883.9,14.6,State
+SCH01,PM Awas Yojana,Housing,GJ,2022,3162.8,3035.5,4.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,GJ,2022,3338.9,2903.2,9.5,CSS
+SCH03,National Health Mission,Health,GJ,2022,4634.3,4225.9,10.6,CSS
+SCH04,State Skill Program,Skill Development,GJ,2022,2851.3,2593.9,20.1,State
+SCH05,Old Age Pension,Social Justice,GJ,2022,5438.8,5298.5,20.1,State
+SCH01,PM Awas Yojana,Housing,GJ,2023,2440.1,2292.4,12.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,GJ,2023,2124.3,2037.9,2.9,CSS
+SCH03,National Health Mission,Health,GJ,2023,5489.2,4995.1,16.7,CSS
+SCH04,State Skill Program,Skill Development,GJ,2023,4228.6,4086.4,16.6,State
+SCH05,Old Age Pension,Social Justice,GJ,2023,3992.5,3428.2,13.9,State
+SCH01,PM Awas Yojana,Housing,RJ,2020,1580.9,1495.3,13.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,RJ,2020,4337.2,3710.1,4.0,CSS
+SCH03,National Health Mission,Health,RJ,2020,4524.9,3888.6,3.6,CSS
+SCH04,State Skill Program,Skill Development,RJ,2020,863.0,840.8,19.0,State
+SCH05,Old Age Pension,Social Justice,RJ,2020,2636.9,2343.0,10.0,State
+SCH01,PM Awas Yojana,Housing,RJ,2021,4828.2,4519.1,6.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,RJ,2021,1705.4,1471.4,17.2,CSS
+SCH03,National Health Mission,Health,RJ,2021,4774.7,4223.0,2.5,CSS
+SCH04,State Skill Program,Skill Development,RJ,2021,1227.3,1197.6,8.8,State
+SCH05,Old Age Pension,Social Justice,RJ,2021,4800.0,4469.8,10.8,State
+SCH01,PM Awas Yojana,Housing,RJ,2022,1869.6,1618.6,16.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,RJ,2022,4828.1,4508.0,14.2,CSS
+SCH03,National Health Mission,Health,RJ,2022,1018.1,993.6,20.4,CSS
+SCH04,State Skill Program,Skill Development,RJ,2022,2322.7,2270.2,15.8,State
+SCH05,Old Age Pension,Social Justice,RJ,2022,3828.6,3626.6,20.7,State
+SCH01,PM Awas Yojana,Housing,RJ,2023,4213.7,3651.8,9.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,RJ,2023,5626.0,4946.4,10.6,CSS
+SCH03,National Health Mission,Health,RJ,2023,3046.8,2763.8,16.1,CSS
+SCH04,State Skill Program,Skill Development,RJ,2023,5704.0,5026.9,4.8,State
+SCH05,Old Age Pension,Social Justice,RJ,2023,1826.8,1763.5,16.9,State
+SCH01,PM Awas Yojana,Housing,WB,2020,2286.7,2186.3,21.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,WB,2020,5201.9,5043.0,7.8,CSS
+SCH03,National Health Mission,Health,WB,2020,4726.2,4300.2,21.4,CSS
+SCH04,State Skill Program,Skill Development,WB,2020,4588.2,4363.0,17.1,State
+SCH05,Old Age Pension,Social Justice,WB,2020,1722.6,1586.3,24.6,State
+SCH01,PM Awas Yojana,Housing,WB,2021,5674.4,4855.1,5.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,WB,2021,1485.0,1402.4,20.8,CSS
+SCH03,National Health Mission,Health,WB,2021,1910.3,1749.3,21.3,CSS
+SCH04,State Skill Program,Skill Development,WB,2021,4610.6,4244.0,15.6,State
+SCH05,Old Age Pension,Social Justice,WB,2021,3443.5,3060.2,15.0,State
+SCH01,PM Awas Yojana,Housing,WB,2022,4382.2,4222.4,16.6,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,WB,2022,4757.8,4143.2,12.6,CSS
+SCH03,National Health Mission,Health,WB,2022,848.5,748.5,18.7,CSS
+SCH04,State Skill Program,Skill Development,WB,2022,5957.4,5140.6,11.2,State
+SCH05,Old Age Pension,Social Justice,WB,2022,4960.4,4347.9,14.8,State
+SCH01,PM Awas Yojana,Housing,WB,2023,4612.0,4289.5,6.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,WB,2023,2648.0,2520.6,14.7,CSS
+SCH03,National Health Mission,Health,WB,2023,827.2,784.9,2.8,CSS
+SCH04,State Skill Program,Skill Development,WB,2023,4677.8,4099.3,24.0,State
+SCH05,Old Age Pension,Social Justice,WB,2023,2713.3,2421.6,5.4,State
+SCH01,PM Awas Yojana,Housing,MP,2020,2389.1,2303.0,24.9,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MP,2020,2715.2,2466.3,18.6,CSS
+SCH03,National Health Mission,Health,MP,2020,5408.2,5013.9,11.0,CSS
+SCH04,State Skill Program,Skill Development,MP,2020,2945.6,2770.2,2.1,State
+SCH05,Old Age Pension,Social Justice,MP,2020,4021.9,3604.5,20.3,State
+SCH01,PM Awas Yojana,Housing,MP,2021,1283.6,1189.2,13.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MP,2021,4140.1,3554.0,15.3,CSS
+SCH03,National Health Mission,Health,MP,2021,3719.7,3432.9,15.9,CSS
+SCH04,State Skill Program,Skill Development,MP,2021,4317.6,4121.8,8.2,State
+SCH05,Old Age Pension,Social Justice,MP,2021,5090.3,4656.4,3.8,State
+SCH01,PM Awas Yojana,Housing,MP,2022,1104.5,986.8,20.1,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MP,2022,4479.9,4267.2,13.9,CSS
+SCH03,National Health Mission,Health,MP,2022,3089.0,2684.9,9.5,CSS
+SCH04,State Skill Program,Skill Development,MP,2022,3056.9,2633.6,7.1,State
+SCH05,Old Age Pension,Social Justice,MP,2022,3910.8,3698.2,25.0,State
+SCH01,PM Awas Yojana,Housing,MP,2023,5652.2,5276.5,11.7,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,MP,2023,4108.1,3911.5,4.7,CSS
+SCH03,National Health Mission,Health,MP,2023,2931.5,2811.8,10.8,CSS
+SCH04,State Skill Program,Skill Development,MP,2023,3773.7,3496.0,6.2,State
+SCH05,Old Age Pension,Social Justice,MP,2023,2683.6,2397.8,2.6,State
+SCH01,PM Awas Yojana,Housing,PB,2020,925.8,887.0,8.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,PB,2020,3494.0,3105.6,23.6,CSS
+SCH03,National Health Mission,Health,PB,2020,2148.3,1946.1,22.1,CSS
+SCH04,State Skill Program,Skill Development,PB,2020,5178.1,4526.6,20.5,State
+SCH05,Old Age Pension,Social Justice,PB,2020,3182.6,2905.0,5.1,State
+SCH01,PM Awas Yojana,Housing,PB,2021,1219.1,1151.6,13.4,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,PB,2021,3071.6,2902.2,19.6,CSS
+SCH03,National Health Mission,Health,PB,2021,1626.3,1511.4,5.1,CSS
+SCH04,State Skill Program,Skill Development,PB,2021,4707.2,4403.1,24.0,State
+SCH05,Old Age Pension,Social Justice,PB,2021,1158.6,993.4,8.5,State
+SCH01,PM Awas Yojana,Housing,PB,2022,2160.9,1906.1,22.8,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,PB,2022,2097.6,1857.2,19.5,CSS
+SCH03,National Health Mission,Health,PB,2022,3138.6,2984.8,3.5,CSS
+SCH04,State Skill Program,Skill Development,PB,2022,3335.4,2849.6,3.4,State
+SCH05,Old Age Pension,Social Justice,PB,2022,5513.5,4786.3,14.2,State
+SCH01,PM Awas Yojana,Housing,PB,2023,2937.7,2629.7,22.7,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,PB,2023,913.5,855.3,24.2,CSS
+SCH03,National Health Mission,Health,PB,2023,3712.9,3608.1,3.2,CSS
+SCH04,State Skill Program,Skill Development,PB,2023,2977.7,2631.8,18.8,State
+SCH05,Old Age Pension,Social Justice,PB,2023,5902.7,5214.2,17.0,State
+SCH01,PM Awas Yojana,Housing,HR,2020,1830.1,1690.1,12.7,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,HR,2020,5854.4,5439.4,10.0,CSS
+SCH03,National Health Mission,Health,HR,2020,1393.3,1211.7,7.2,CSS
+SCH04,State Skill Program,Skill Development,HR,2020,2105.0,2022.0,14.9,State
+SCH05,Old Age Pension,Social Justice,HR,2020,3521.6,3045.9,21.8,State
+SCH01,PM Awas Yojana,Housing,HR,2021,4558.6,3914.9,18.3,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,HR,2021,3626.4,3121.0,12.5,CSS
+SCH03,National Health Mission,Health,HR,2021,3320.4,2893.9,23.8,CSS
+SCH04,State Skill Program,Skill Development,HR,2021,5219.9,4890.9,12.6,State
+SCH05,Old Age Pension,Social Justice,HR,2021,2941.2,2748.9,14.5,State
+SCH01,PM Awas Yojana,Housing,HR,2022,1123.8,1030.1,20.5,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,HR,2022,3188.0,2731.4,20.1,CSS
+SCH03,National Health Mission,Health,HR,2022,1847.1,1632.1,5.8,CSS
+SCH04,State Skill Program,Skill Development,HR,2022,2517.1,2387.2,13.9,State
+SCH05,Old Age Pension,Social Justice,HR,2022,1865.4,1798.4,22.2,State
+SCH01,PM Awas Yojana,Housing,HR,2023,5327.0,4693.3,12.4,CSS
+SCH02,Jal Jeevan Mission,Jal Shakti,HR,2023,5921.9,5628.0,2.6,CSS
+SCH03,National Health Mission,Health,HR,2023,1139.1,1036.9,22.9,CSS
+SCH04,State Skill Program,Skill Development,HR,2023,3601.2,3294.1,4.4,State
+SCH05,Old Age Pension,Social Justice,HR,2023,4215.3,4033.5,10.7,State
