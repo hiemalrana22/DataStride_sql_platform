@@ -314,16 +314,6 @@
   color: var(--text-muted);
 }
 
-/* Single query output area (practice / sandbox) */
-.sandbox-output {
-  flex: 1;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: var(--bg-panel);
-}
-
 /* Responsive: stack on smaller screens */
 @media (max-width: 1024px) {
   .sandbox-layout {
