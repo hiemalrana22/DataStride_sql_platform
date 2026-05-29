@@ -1,9 +1,9 @@
 // ─────────────────────────────────────────────
 // utils/practiceDatabase.js
 //
-// Loads ALL CSV files from backend/datasets/ (uploaded by owner).
-// Each file becomes one SQLite table. Schema and sample rows
-// are read automatically from the CSV header.
+// All CSV files in backend/datasets/ → ONE SQLite database.
+// Built once at startup (cached on disk until CSVs change).
+// Supports single-table queries, JOINs, subqueries, etc.
 // ─────────────────────────────────────────────
 
 const Database = require("better-sqlite3");
@@ -11,18 +11,19 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 
-// Primary folder: owner-uploaded datasets
 const DATASETS_DIR = path.join(__dirname, "..", "datasets");
 const FALLBACK_DIR = path.join(__dirname, "..", "db", "datasets");
+const DB_DIR = path.join(__dirname, "..", "db");
+const DB_PATH = path.join(DB_DIR, "practice.sqlite");
+const MANIFEST_PATH = path.join(DB_DIR, "practice-manifest.json");
 
-const MAX_ROWS_SMALL_FILE = 2000;
-const MAX_ROWS_LARGE_FILE = 500;
+const MAX_ROWS_SMALL_FILE = 5000;
+const MAX_ROWS_LARGE_FILE = 2000;
 const LARGE_FILE_BYTES = 1_500_000;
 
 let practiceDb = null;
 let tableCatalog = [];
 
-// ── Sanitize names for SQL ───────────────────
 function toTableName(fileName) {
   const base = path.basename(fileName, path.extname(fileName));
   return base
@@ -69,7 +70,6 @@ function inferSqlType(values) {
   return "TEXT";
 }
 
-// Parse one CSV line (handles quoted commas)
 function parseCsvLine(line) {
   const row = [];
   let field = "";
@@ -90,7 +90,6 @@ function parseCsvLine(line) {
   return row;
 }
 
-// Read small CSV files entirely
 function parseSmallCsv(filePath, maxDataRows) {
   const content = fs.readFileSync(filePath, "utf8");
   const lines = content.split(/\r?\n/).filter((l) => l.trim() !== "");
@@ -106,7 +105,6 @@ function parseSmallCsv(filePath, maxDataRows) {
   return { headers, rows };
 }
 
-// Stream large CSV — only load header + limited rows (saves memory on Render)
 function parseLargeCsv(filePath, maxDataRows) {
   return new Promise((resolve, reject) => {
     const rows = [];
@@ -147,7 +145,6 @@ async function loadCsvFile(filePath) {
 }
 
 function discoverCsvFiles() {
-  // Use owner uploads in backend/datasets/ when present
   let dir = DATASETS_DIR;
   if (!fs.existsSync(dir) || !fs.readdirSync(dir).some((f) => f.toLowerCase().endsWith(".csv"))) {
     dir = FALLBACK_DIR;
@@ -162,6 +159,7 @@ function discoverCsvFiles() {
       filePath: path.join(dir, name),
       fileName: name,
       tableName: toTableName(name),
+      mtime: fs.statSync(path.join(dir, name)).mtimeMs,
     }))
     .sort((a, b) => a.tableName.localeCompare(b.tableName));
 }
@@ -172,15 +170,55 @@ function guessDay(tableName) {
   return 10;
 }
 
-async function buildPracticeDatabase() {
-  const db = new Database(":memory:");
+function getCsvFingerprint(files) {
+  return files.map((f) => `${f.fileName}:${f.mtime}`).join("|");
+}
+
+function readManifest() {
+  if (!fs.existsSync(MANIFEST_PATH)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function writeManifest(files, catalog) {
+  if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
+  fs.writeFileSync(
+    MANIFEST_PATH,
+    JSON.stringify(
+      {
+        fingerprint: getCsvFingerprint(files),
+        builtAt: new Date().toISOString(),
+        tables: catalog.map((t) => ({
+          tableName: t.tableName,
+          fileName: t.fileName,
+          rowCount: t.rowCount,
+        })),
+      },
+      null,
+      2
+    )
+  );
+}
+
+function needsRebuild(files) {
+  if (!fs.existsSync(DB_PATH)) return true;
+  const manifest = readManifest();
+  if (!manifest) return true;
+  return manifest.fingerprint !== getCsvFingerprint(files);
+}
+
+async function buildPracticeDatabase(dbPath) {
+  if (fs.existsSync(dbPath)) fs.unlinkSync(dbPath);
+
+  const db = new Database(dbPath);
   const catalog = [];
   const csvFiles = discoverCsvFiles();
 
   if (csvFiles.length === 0) {
-    throw new Error(
-      "No CSV datasets found. Upload .csv files to backend/datasets/"
-    );
+    throw new Error("No CSV datasets found. Upload .csv files to backend/datasets/");
   }
 
   for (const { filePath, fileName, tableName } of csvFiles) {
@@ -196,93 +234,129 @@ async function buildPracticeDatabase() {
       return inferSqlType(colValues);
     });
 
-    const colDefs = headers
-      .map((h, i) => `"${h}" ${columnTypes[i]}`)
-      .join(", ");
+    const colDefs = headers.map((h, i) => `"${h}" ${columnTypes[i]}`).join(", ");
 
     db.exec(`CREATE TABLE "${tableName}" (${colDefs})`);
 
     const placeholders = headers.map(() => "?").join(", ");
-    const ins = db.prepare(
-      `INSERT INTO "${tableName}" VALUES (${placeholders})`
-    );
+    const ins = db.prepare(`INSERT INTO "${tableName}" VALUES (${placeholders})`);
 
-    for (const row of rows) {
-      const padded = headers.map((_, i) => maybeNum(row[i] ?? ""));
-      ins.run(...padded);
-    }
+    const insertMany = db.transaction((dataRows) => {
+      for (const row of dataRows) {
+        const padded = headers.map((_, i) => maybeNum(row[i] ?? ""));
+        ins.run(...padded);
+      }
+    });
+
+    insertMany(rows);
 
     catalog.push({
       tableName,
       fileName,
       day: guessDay(tableName),
-      description: `Dataset from ${fileName} (${rows.length} rows loaded)`,
+      description: `${fileName} — ${rows.length} rows (JOINs enabled)`,
       rowCount: rows.length,
-      columns: headers.map((name, i) => ({
-        name,
-        type: columnTypes[i],
-      })),
+      columns: headers.map((name, i) => ({ name, type: columnTypes[i] })),
     });
 
-    console.log(`Loaded ${tableName} ← ${fileName} (${rows.length} rows)`);
+    console.log(`  ✓ ${tableName} ← ${fileName} (${rows.length} rows)`);
   }
 
-  return { db, catalog };
+  return { db, catalog, csvFiles };
 }
 
-// Sync wrapper — build once on first use
 let buildPromise = null;
 
 function getPracticeDb() {
   if (practiceDb) return practiceDb;
-  throw new Error(
-    "Database not ready. Call initPracticeDb() at server startup."
-  );
+  throw new Error("Database not ready. Call initPracticeDb() at server startup.");
 }
 
 function getTableCatalog() {
   return tableCatalog;
 }
 
-function getTableMeta(tableName) {
-  return tableCatalog.find((t) => t.tableName === tableName) || null;
-}
-
-function getTablePreview(tableName, limit = 10) {
-  const meta = getTableMeta(tableName);
-  if (!meta) {
-    throw new Error(`Unknown dataset: ${tableName}`);
-  }
+function getPracticeStatus() {
   const db = getPracticeDb();
-  const rows = db.prepare(`SELECT * FROM "${tableName}" LIMIT ${limit}`).all();
-  return { tableName, columns: meta.columns, rows, fileName: meta.fileName };
+  const names = db
+    .prepare(
+      `SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name`
+    )
+    .all()
+    .map((r) => r.name);
+
+  return {
+    ready: true,
+    tableCount: names.length,
+    tables: names,
+    catalog: tableCatalog,
+    message: "All datasets loaded in one database. JOINs and multi-table queries are supported.",
+  };
 }
 
 async function initPracticeDb() {
   if (practiceDb) return practiceDb;
+
   if (!buildPromise) {
-    buildPromise = buildPracticeDatabase()
-      .then(({ db, catalog }) => {
-        practiceDb = db;
+    buildPromise = (async () => {
+      const csvFiles = discoverCsvFiles();
+
+      if (needsRebuild(csvFiles)) {
+        console.log("Building practice database from CSV files...");
+        if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
+
+        const { catalog } = await buildPracticeDatabase(DB_PATH);
         tableCatalog = catalog;
-        console.log(`Practice DB ready — ${catalog.length} datasets`);
-        return db;
-      })
-      .catch((err) => {
-        buildPromise = null;
-        throw err;
-      });
+        writeManifest(csvFiles, catalog);
+        console.log(`Practice DB built — ${catalog.length} tables in ${DB_PATH}`);
+      } else {
+        console.log("Using cached practice database:", DB_PATH);
+        const manifest = readManifest();
+        practiceDb = new Database(DB_PATH);
+        tableCatalog = getTableCatalogFromDb(practiceDb, manifest);
+        console.log(`Practice DB ready — ${tableCatalog.length} tables (cached)`);
+        return practiceDb;
+      }
+
+      practiceDb = new Database(DB_PATH);
+      return practiceDb;
+    })().catch((err) => {
+      buildPromise = null;
+      throw err;
+    });
   }
+
   return buildPromise;
+}
+
+function getTableCatalogFromDb(db, manifest) {
+  const files = discoverCsvFiles();
+  const catalog = [];
+
+  for (const { fileName, tableName } of files) {
+    const countRow = db
+      .prepare(`SELECT COUNT(*) AS c FROM "${tableName}"`)
+      .get();
+    const cols = db.prepare(`PRAGMA table_info("${tableName}")`).all();
+
+    catalog.push({
+      tableName,
+      fileName,
+      day: guessDay(tableName),
+      description: `${fileName} — ${countRow.c} rows (JOINs enabled)`,
+      rowCount: countRow.c,
+      columns: cols.map((c) => ({ name: c.name, type: c.type })),
+    });
+  }
+
+  return catalog;
 }
 
 module.exports = {
   initPracticeDb,
   getPracticeDb,
   getTableCatalog,
-  getTableMeta,
-  getTablePreview,
-  // Legacy export name used by controller
+  getPracticeStatus,
   get TABLE_CATALOG() {
     return tableCatalog;
   },

@@ -7,7 +7,7 @@
 //   POST /api/practice/run     — run any SELECT query against all datasets
 // ─────────────────────────────────────────────
 
-const { getPracticeDb, getTableCatalog, getTablePreview } = require("../utils/practiceDatabase");
+const { getPracticeDb, getTableCatalog, getPracticeStatus } = require("../utils/practiceDatabase");
 const { validateQuery } = require("../utils/validateQuery");
 
 // ─────────────────────────────────────────────
@@ -16,21 +16,14 @@ const { validateQuery } = require("../utils/validateQuery");
 // can render the "Available Tables" panel.
 // ─────────────────────────────────────────────
 function getTables(req, res) {
-  return res.status(200).json({ tables: getTableCatalog() });
-}
-
-// ─────────────────────────────────────────────
-// GET /api/practice/tables/:tableName/preview
-// Returns sample rows for the selected dataset.
-// ─────────────────────────────────────────────
-function previewTable(req, res) {
-  const { tableName } = req.params;
-  try {
-    const preview = getTablePreview(tableName, 10);
-    return res.status(200).json(preview);
-  } catch (err) {
-    return res.status(400).json({ error: err.message });
-  }
+  const status = getPracticeStatus();
+  return res.status(200).json({
+    tables: getTableCatalog(),
+    tableCount: status.tableCount,
+    tableNames: status.tables,
+    message: status.message,
+    ready: status.ready,
+  });
 }
 
 // ─────────────────────────────────────────────
@@ -83,4 +76,4 @@ function runPracticeQuery(req, res) {
   });
 }
 
-module.exports = { getTables, previewTable, runPracticeQuery };
+module.exports = { getTables, runPracticeQuery };

@@ -130,6 +130,15 @@
   flex-shrink: 0;
 }
 
+.sandbox-db-note {
+  padding: 0.5rem 1rem;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--success);
+  border-bottom: 1px solid var(--border);
+  background: rgba(78, 201, 176, 0.08);
+}
+
 .sandbox-day-group {
   border-bottom: 1px solid var(--border);
 }

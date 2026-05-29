@@ -6,7 +6,7 @@
 const express      = require("express");
 const router       = express.Router();
 const { runQuery, listQuestions, getQuestion } = require("../controllers/queryController");
-const { getTables, previewTable, runPracticeQuery } = require("../controllers/practiceController");
+const { getTables, runPracticeQuery } = require("../controllers/practiceController");
 
 /**
  * GET /api/questions
@@ -33,12 +33,6 @@ router.post("/run-query", runQuery);
  * Returns catalog of all available tables for the sandbox.
  */
 router.get("/practice/tables", getTables);
-
-/**
- * GET /api/practice/tables/:tableName/preview
- * Sample rows for the selected dataset (expected output reference).
- */
-router.get("/practice/tables/:tableName/preview", previewTable);
 
 /**
  * POST /api/practice/run

@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 dist
+backend/db/practice.sqlite
+backend/db/practice-manifest.json
 .env
 .env.*
 !.env.example

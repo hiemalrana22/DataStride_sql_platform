@@ -5,34 +5,40 @@ import SqlEditor from '../components/SqlEditor';
 import OutputTable from '../components/OutputTable';
 import Loader from '../components/Loader';
 
+const STARTER_SQL = `-- All datasets are loaded in one database.
+-- Single table:
+SELECT * FROM book1 LIMIT 10;
+
+-- JOIN across tables:
+-- SELECT b1.Party_Name, b2.Campaign_Spending
+-- FROM book1 b1
+-- JOIN book2 b2 ON b1.Party_Name = b2.Party_Name
+-- LIMIT 10;
+`;
+
 /**
- * SandboxPage — pick a dataset, write SQL, see query output.
+ * Sandbox — all tables stay loaded; write any SELECT (JOINs, etc.).
  */
 function SandboxPage({ activePage, onPageChange }) {
   const [tables, setTables] = useState([]);
+  const [dbMessage, setDbMessage] = useState('');
   const [tablesError, setTablesError] = useState(null);
   const [selectedTable, setSelectedTable] = useState(null);
   const [expandedTable, setExpandedTable] = useState(null);
-  const [sql, setSql] = useState('');
+  const [sql, setSql] = useState(STARTER_SQL);
   const [isRunning, setIsRunning] = useState(false);
   const [result, setResult] = useState(null);
   const [hasRun, setHasRun] = useState(false);
 
-  const selectTable = (tableName) => {
-    setSelectedTable(tableName);
-    setExpandedTable(tableName);
-    setSql(`SELECT * FROM ${tableName} LIMIT 10;`);
-    setHasRun(false);
-    setResult(null);
-  };
-
+  // Load table list once — database already has all tables on the server
   useEffect(() => {
     fetchPracticeTables()
       .then((data) => {
-        setTables(data);
+        setTables(data.tables || data);
+        setDbMessage(data.message || '');
         setTablesError(null);
-        if (data.length > 0) {
-          selectTable(data[0].tableName);
+        if ((data.tables || data).length > 0) {
+          setSelectedTable((data.tables || data)[0].tableName);
         }
       })
       .catch((err) => {
@@ -41,8 +47,10 @@ function SandboxPage({ activePage, onPageChange }) {
       });
   }, []);
 
+  // Click table = show schema only (do not overwrite user's query)
   const handleTableClick = (tableName) => {
-    selectTable(tableName);
+    setSelectedTable(tableName);
+    setExpandedTable((prev) => (prev === tableName ? null : tableName));
   };
 
   const handleRun = async () => {
@@ -66,9 +74,7 @@ function SandboxPage({ activePage, onPageChange }) {
   };
 
   const handleReset = () => {
-    if (selectedTable) {
-      setSql(`SELECT * FROM ${selectedTable} LIMIT 10;`);
-    }
+    setSql(STARTER_SQL);
     setHasRun(false);
     setResult(null);
   };
@@ -80,8 +86,6 @@ function SandboxPage({ activePage, onPageChange }) {
     return acc;
   }, {});
 
-  const selectedMeta = tables.find((t) => t.tableName === selectedTable);
-
   return (
     <div className="app-shell">
       <Navbar activePage={activePage} onPageChange={onPageChange} />
@@ -89,7 +93,13 @@ function SandboxPage({ activePage, onPageChange }) {
 
       <div className="sandbox-layout">
         <aside className="sandbox-sidebar">
-          <div className="sandbox-sidebar__header">Choose a dataset</div>
+          <div className="sandbox-sidebar__header">
+            Datasets ({tables.length})
+          </div>
+
+          {dbMessage && (
+            <p className="sandbox-db-note">{dbMessage}</p>
+          )}
 
           {tablesError && (
             <div className="alert alert--error" style={{ margin: '0.75rem' }} role="alert">
@@ -132,23 +142,14 @@ function SandboxPage({ activePage, onPageChange }) {
           ))}
 
           <div className="sandbox-hint">
-            <div className="sandbox-hint__title">How it works</div>
+            <div className="sandbox-hint__title">Multi-table SQL</div>
             <div className="sandbox-hint__text">
-              1. Pick a dataset<br />
-              2. Write your <code>SELECT</code> query<br />
-              3. Run it to see the output
+              All tables are loaded together. Use <code>JOIN</code>, subqueries, or multiple tables in one query.
             </div>
           </div>
         </aside>
 
         <div className="sandbox-main">
-          {selectedMeta && (
-            <div className="sandbox-dataset-banner">
-              <strong>{selectedMeta.tableName}</strong>
-              <span>{selectedMeta.description}</span>
-            </div>
-          )}
-
           <div className="sandbox-editor">
             <SqlEditor
               value={sql}
@@ -178,7 +179,7 @@ function SandboxPage({ activePage, onPageChange }) {
             {!hasRun && (
               <div className="sandbox-statusbar">
                 <span className="sandbox-statusbar__idle">
-                  Run a query on <strong>{selectedTable || 'your dataset'}</strong> to see results.
+                  Run any <code>SELECT</code> query — single table or JOIN.
                 </span>
               </div>
             )}
