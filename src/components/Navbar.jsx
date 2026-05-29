@@ -9,7 +9,7 @@ function Navbar() {
           SQL
         </div>
         <div>
-          <div className="navbar__title">OranjeStride SQL</div>
+          <div className="navbar__title">DataStride SQL</div>
           <div className="navbar__subtitle">Practice · Learn · Master</div>
         </div>
       </div>

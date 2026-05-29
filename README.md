@@ -1,4 +1,4 @@
-# OranjeStride SQL Platform
+# DataStride SQL Platform
 
 A LeetCode-style SQL learning frontend built with React + Vite. Users solve predefined SQL problems in a Monaco editor with mock query execution (backend integration ready).
 
@@ -72,4 +72,4 @@ src/
 
 ## License
 
-Private — OranjeStride platform.
+Private — DataStride platform.
